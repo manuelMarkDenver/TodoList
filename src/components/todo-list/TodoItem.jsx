@@ -28,15 +28,31 @@ const style = {
 };
 
 const TodoItem = (props) => {
+  const { id, todo, done: action } = props.todo;
+
+  const initialState = {
+    id: id,
+    todo: todo,
+    done: action,
+  };
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const { id, todo, done: action } = props.todo;
+  const [editedTodo, setEditedTodo] = useState(initialState);
 
   const todoClickHandler = (e) => {
     const passedId = props.todo.id;
     props.onItemClick(passedId);
+  };
+
+  const handleOnChange = (e) => {
+    const newData = {
+      ...editedTodo,
+      todo: e.target.value,
+    };
+    setEditedTodo(newData);
+    console.log(editedTodo);
   };
 
   return (
@@ -64,6 +80,7 @@ const TodoItem = (props) => {
               <Typography variant='span'>
                 {
                   <CustomButton
+                    data={editedTodo}
                     action={action}
                     id={id}
                     onButtonClick={props.onButtonClick}
@@ -76,6 +93,7 @@ const TodoItem = (props) => {
                 {
                   <CustomButton
                     action={'DELETE'}
+                    data={editedTodo}
                     id={id}
                     onButtonClick={props.onButtonClick}
                   />
@@ -124,15 +142,16 @@ const TodoItem = (props) => {
             label='Add Todo'
             placeholder='Enter your todo here'
             defaultValue={todo}
-            // onChange={handleOnChange}
+            onChange={handleOnChange}
             sx={{
               marginBottom: '10px',
             }}
           />
           <CustomButton
+            data={editedTodo}
             action={'EDIT'}
-            id={id}
             onButtonClick={props.onButtonClick}
+            setOpen={setOpen}
           />
         </Box>
       </Modal>

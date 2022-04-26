@@ -51,7 +51,7 @@ function App() {
       console.log('here at done');
 
       const updatedTodos = todos.map((todo) => {
-        if (todo.id === payload[0].id) {
+        if (todo.id === payload[0].data.id) {
           return { ...todo, done: !todo.done };
         }
 
@@ -68,24 +68,24 @@ function App() {
     if (payload[0].action === 'EDIT') {
       console.log('here at EDIT', payload[0]);
 
-      // const updatedTodos = todos.map((todo) => {
-      //   if (todo.id === payload[0].id) {
-      //     return { ...todo, todo:  };
-      //   }
+      const updatedTodos = todos.map((todo) => {
+        if (todo.id === payload[0].data.id) {
+          return { ...todo, todo: payload[0].data.todo };
+        }
 
-      //   return todo;
-      // });
+        return todo;
+      });
 
-      // setTodos(updatedTodos);
+      setTodos(updatedTodos);
 
       return;
     }
 
     if (payload[0].action === 'DELETE') {
-      console.log('here at delete');
+      console.log('here at delete', payload[0]);
 
       const updatedTodos = todos.filter(
-        (todo) => todo.id !== payload[0].id && todo
+        (todo) => todo.id !== payload[0].data.id && todo
       );
 
       setTodos(updatedTodos);

@@ -6,14 +6,18 @@ const customButton = (props) => {
   const todoButtonHandler = (e) => {
     e.stopPropagation();
 
+    props.setOpen(false);
+
     const action = e.target.dataset['action'];
 
     const payload = [
       {
-        id: props.id,
         action: action,
+        data: props.data,
       },
     ];
+
+    // console.log(payload);
     props.onButtonClick(payload);
   };
 
