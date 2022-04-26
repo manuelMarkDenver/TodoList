@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react';
 import './App.css';
-import TodoContainer from './components/TodoContainer';
+import TodoContainer from './components/Todo/TodoContainer';
 
 const DUMMY_DATA = [
   {
@@ -25,9 +26,24 @@ const DUMMY_DATA = [
 ];
 
 function App() {
+  const [todos, setTodos] = useState(DUMMY_DATA);
+
+  const onItemClickHandler = (id) => {
+    console.log(id);
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, done: !todo.done };
+      }
+
+      return todo;
+    });
+
+    setTodos(updatedTodos);
+  };
+
   return (
     <div className='App'>
-      <TodoContainer todos={DUMMY_DATA} />
+      <TodoContainer todos={todos} onItemClick={onItemClickHandler} />
     </div>
   );
 }
