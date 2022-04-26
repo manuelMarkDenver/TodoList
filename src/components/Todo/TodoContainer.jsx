@@ -14,7 +14,11 @@ const TodoContainer = (props) => {
       >
         Todo List App
       </Typography>
-      <TodoList todos={props.todos} onItemClick={props.onItemClick} />
+      <TodoList
+        todos={props.todos}
+        onItemClick={props.onItemClick}
+        onButtonClick={props.onButtonClick}
+      />
     </div>
   );
 };
