@@ -1,11 +1,13 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 
+import { Container } from '@mui/material';
+
 const TodoList = (props) => {
   const todos = props.todos;
 
   return (
-    <div>
+    <Container maxWidth='xl'>
       {todos.map((todo) => (
         <TodoItem
           todo={todo}
@@ -14,7 +16,7 @@ const TodoList = (props) => {
           onButtonClick={props.onButtonClick}
         />
       ))}
-    </div>
+    </Container>
   );
 };
 

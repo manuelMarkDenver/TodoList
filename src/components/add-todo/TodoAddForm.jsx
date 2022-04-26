@@ -5,10 +5,12 @@ import CustomButton from '../buttons/CustomButton';
 import { Container, Box, TextField, Button } from '@mui/material';
 
 const TodoAddForm = (props) => {
-  const [newTodo, setNewTodo] = useState({
+  const initialState = {
     todo: '',
     done: false,
-  });
+  };
+
+  const [newTodo, setNewTodo] = useState(initialState);
 
   const handleOnChange = (e) => {
     const newData = {
@@ -23,6 +25,8 @@ const TodoAddForm = (props) => {
     e.preventDefault();
 
     props.onSaveTodoData(newTodo);
+
+    document.querySelector('#todoTextField').value = '';
   };
 
   return (

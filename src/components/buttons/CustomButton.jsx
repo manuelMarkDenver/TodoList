@@ -60,6 +60,26 @@ const customButton = (props) => {
     ));
   }
 
+  if (props.action === 'EDIT') {
+    return (renderButton = (
+      <Button
+        variant='contained'
+        size='large'
+        color='edit'
+        sx={{
+          '&:hover': {
+            backgroundColor: '#00c1d4',
+            opacity: '0.8',
+          },
+        }}
+        onClick={todoButtonHandler}
+        data-action='EDIT'
+      >
+        {props.action}
+      </Button>
+    ));
+  }
+
   if (typeof props.action === 'boolean') {
     return (renderButton = (
       <Button

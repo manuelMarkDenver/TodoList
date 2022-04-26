@@ -65,6 +65,22 @@ function App() {
       return;
     }
 
+    if (payload[0].action === 'EDIT') {
+      console.log('here at EDIT', payload[0]);
+
+      // const updatedTodos = todos.map((todo) => {
+      //   if (todo.id === payload[0].id) {
+      //     return { ...todo, todo:  };
+      //   }
+
+      //   return todo;
+      // });
+
+      // setTodos(updatedTodos);
+
+      return;
+    }
+
     if (payload[0].action === 'DELETE') {
       console.log('here at delete');
 
