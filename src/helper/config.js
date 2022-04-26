@@ -6,12 +6,13 @@ const customTheme = createTheme({
       main: '#0b6bf2',
       contrastText: '#fff',
     },
-    hover: {
-      main: '#0243eb',
-      contrastText: '#fff',
-    },
     done: {
       main: '#dbe9fd',
+      contrastText: '#fff',
+    },
+    add: {
+      main: '#11a783',
+      hover: '#2cc2a5',
       contrastText: '#fff',
     },
     delete: {

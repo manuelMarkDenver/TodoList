@@ -11,7 +11,7 @@ import {
 import CustomButton from '../buttons/CustomButton';
 
 const TodoItem = (props) => {
-  const { id, todo, done } = props.todo;
+  const { id, todo, done: action } = props.todo;
 
   const todoClickHandler = (e) => {
     const passedId = props.todo.id;
@@ -36,14 +36,14 @@ const TodoItem = (props) => {
             </Grid>
             <Grid item xs={3}>
               <Typography variant='p'>
-                {done ? 'Done' : 'Not yet done'}
+                {action ? 'Done' : 'Not yet done'}
               </Typography>
             </Grid>
             <Grid item xs={3}>
               <Typography variant='span'>
                 {
                   <CustomButton
-                    done={done}
+                    action={action}
                     id={id}
                     onButtonClick={props.onButtonClick}
                   />
@@ -54,7 +54,7 @@ const TodoItem = (props) => {
               <Typography variant='span'>
                 {
                   <CustomButton
-                    done={'DELETE'}
+                    action={'DELETE'}
                     id={id}
                     onButtonClick={props.onButtonClick}
                   />

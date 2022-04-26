@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import customTheme from './helper/config';
 
-import TodoContainer from './components/Todo/TodoContainer';
+import TodoContainer from './components/todo-list/TodoContainer';
 import { ThemeProvider } from '@mui/material/styles';
 
 const DUMMY_DATA = [
@@ -78,6 +78,12 @@ function App() {
     }
   };
 
+  const addTodoHandler = (newTodo) => {
+    setTodos([newTodo, ...todos]);
+
+    console.log(todos);
+  };
+
   return (
     <div className='App'>
       <ThemeProvider theme={customTheme}>
@@ -85,6 +91,7 @@ function App() {
           todos={todos}
           onItemClick={onItemClickHandler}
           onButtonClick={onButtonClickHandler}
+          onAddTodo={addTodoHandler}
         />
       </ThemeProvider>
     </div>

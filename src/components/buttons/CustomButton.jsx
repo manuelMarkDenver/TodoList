@@ -19,40 +19,64 @@ const customButton = (props) => {
 
   let renderButton;
 
-  if (props.done === 'DELETE') {
-    renderButton = (
+  // if (props.action === 'ADD') {
+  //   return (renderButton = (
+  //     <Button
+  //       variant='contained'
+  //       size='large'
+  //       color='add'
+  //       sx={{
+  //         height: '50px',
+  //         '&:hover': {
+  //           backgroundColor: '#11a783',
+  //           opacity: '0.8',
+  //         },
+  //       }}
+  //       onClick={todoButtonHandler}
+  //       data-action='ADD'
+  //     >
+  //       {props.action}
+  //     </Button>
+  //   ));
+  // }
+
+  if (props.action === 'DELETE') {
+    return (renderButton = (
       <Button
         variant='contained'
         size='large'
         color='delete'
         sx={{
           '&:hover': {
-            bgColor: 'hover',
+            backgroundColor: '#dc262b',
+            opacity: '0.8',
           },
         }}
         onClick={todoButtonHandler}
         data-action='DELETE'
       >
-        DELETE
+        {props.action}
       </Button>
-    );
-  } else {
-    renderButton = (
+    ));
+  }
+
+  if (typeof props.action === 'boolean') {
+    return (renderButton = (
       <Button
         variant='contained'
         size='large'
-        color={!props.done ? 'primary' : 'done'}
+        color={!props.action ? 'primary' : 'done'}
         sx={{
           '&:hover': {
-            bgColor: 'hover',
+            backgroundColor: '#0243eb',
           },
         }}
         onClick={todoButtonHandler}
         data-action='DONE'
       >
-        {props.done ? 'UNDONE' : 'DONE'}
+        {props.action ? 'UNDONE' : 'DONE'}
       </Button>
-    );
+    ));
   }
 
   return <> {renderButton}</>;
