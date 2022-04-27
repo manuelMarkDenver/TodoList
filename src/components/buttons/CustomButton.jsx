@@ -22,7 +22,6 @@ const customButton = (props) => {
         data: props.data,
       },
     ];
-
     // console.log(payload);
     props.onButtonClick(payload);
   };
