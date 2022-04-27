@@ -24,9 +24,16 @@ const TodoAddForm = (props) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    props.onSaveTodoData(newTodo);
+    console.log(newTodo);
 
-    document.querySelector('#todoTextField').value = '';
+    if (newTodo.todo === '' || newTodo.todo === null) {
+      return alert('Todo textfield cannot be empoty');
+    } else {
+      console.log('here at submit');
+      props.onSaveTodoData(newTodo);
+      setNewTodo(initialState);
+      document.querySelector('#todoTextField').value = '';
+    }
   };
 
   return (

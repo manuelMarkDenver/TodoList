@@ -9,13 +9,13 @@ import { ThemeProvider } from '@mui/material/styles';
 const DUMMY_DATA = [
   {
     id: 1,
-    todo: 'Wash dishes',
+    todo: 'Cook breakfast',
     done: false,
   },
   {
     id: 2,
-    todo: 'Go to grocery',
-    done: true,
+    todo: 'Wash the car',
+    done: false,
   },
   {
     id: 3,
@@ -24,8 +24,13 @@ const DUMMY_DATA = [
   },
   {
     id: 4,
-    todo: 'Bond with family',
-    done: true,
+    todo: 'Go to grocery',
+    done: false,
+  },
+  {
+    id: 5,
+    todo: 'Code',
+    done: false,
   },
 ];
 
