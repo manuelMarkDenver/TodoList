@@ -36,9 +36,12 @@ const TodoItem = (props) => {
     done: action,
   };
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [editOpen, setEditOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const handleEditOpen = () => setEditOpen(true);
+  const handleEditClose = () => setEditOpen(false);
+  const handleDeleteOpen = () => setDeleteOpen(true);
+  const handleDeleteClose = () => setDeleteOpen(false);
   const [editedTodo, setEditedTodo] = useState(initialState);
 
   const todoClickHandler = (e) => {
@@ -64,8 +67,8 @@ const TodoItem = (props) => {
             justifyContent: 'space-around',
             alignItems: 'center',
           }}
-          // onClick={() => (!done ? todoClickHandler() : () => false)}
-          onClick={todoClickHandler}
+          onClick={() => (!action ? todoClickHandler() : () => false)}
+          // onClick={todoClickHandler}
         >
           <Grid container spacing={1}>
             <Grid item xs={3}>
@@ -76,31 +79,26 @@ const TodoItem = (props) => {
                 {action ? 'Done' : 'Not yet done'}
               </Typography>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={3}>
               <Typography variant='span'>
-                {
-                  <CustomButton
-                    data={editedTodo}
-                    action={action}
-                    id={id}
-                    onButtonClick={props.onButtonClick}
-                  />
-                }
+                <Button
+                  type={'submit'}
+                  variant='contained'
+                  size='large'
+                  color='delete'
+                  sx={{
+                    '&:hover': {
+                      backgroundColor: '#00a6c0',
+                      opacity: '0.8',
+                    },
+                  }}
+                  onClick={handleEditOpen}
+                >
+                  EDIT
+                </Button>
               </Typography>
             </Grid>
-            <Grid item xs={2}>
-              <Typography variant='span'>
-                {
-                  <CustomButton
-                    action={'DELETE'}
-                    data={editedTodo}
-                    id={id}
-                    onButtonClick={props.onButtonClick}
-                  />
-                }
-              </Typography>
-            </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={3}>
               <Typography variant='span'>
                 <Button
                   type={'submit'}
@@ -113,18 +111,20 @@ const TodoItem = (props) => {
                       opacity: '0.8',
                     },
                   }}
-                  onClick={handleOpen}
+                  onClick={handleDeleteOpen}
                 >
-                  EDIT
+                  DELETE
                 </Button>
               </Typography>
             </Grid>
           </Grid>
         </CardContent>
       </Card>
+
+      {/* Edit Modal */}
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={editOpen}
+        onClose={handleEditClose}
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
       >
@@ -151,8 +151,56 @@ const TodoItem = (props) => {
             data={editedTodo}
             action={'EDIT'}
             onButtonClick={props.onButtonClick}
-            setOpen={setOpen}
+            setEditOpen={setEditOpen}
           />
+        </Box>
+      </Modal>
+
+      {/* Delete Modal */}
+      <Modal
+        open={deleteOpen}
+        onClose={handleDeleteClose}
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
+      >
+        <Box component='form' sx={style}>
+          <Typography
+            id='modal-modal-title'
+            variant='h6'
+            component='h2'
+            sx={{ marginBottom: '20px' }}
+          >
+            ARE YOU SURE YOU WANT TO DELETE?
+          </Typography>
+
+          <Box
+            sx={{
+              display: 'flex',
+            }}
+          >
+            <CustomButton
+              action={'DELETE'}
+              data={editedTodo}
+              id={id}
+              onButtonClick={props.onButtonClick}
+              setDeleteOpen={setDeleteOpen}
+            />
+
+            <Button
+              sx={{
+                backgroundColor: '#808080',
+                color: '#fff',
+                marginLeft: '5px',
+                '&:hover': {
+                  color: '#000',
+                  backgroundColor: '#fafafa',
+                },
+              }}
+              onClick={handleDeleteClose}
+            >
+              Cancel
+            </Button>
+          </Box>
         </Box>
       </Modal>
     </Container>

@@ -6,9 +6,15 @@ const customButton = (props) => {
   const todoButtonHandler = (e) => {
     e.stopPropagation();
 
-    props.setOpen(false);
+    // props.setDeleteOpen(false);
 
     const action = e.target.dataset['action'];
+
+    if (action === 'EDIT') {
+      props.setEditOpen(false);
+    } else {
+      props.setDeleteOpen(false);
+    }
 
     const payload = [
       {
